@@ -18,7 +18,7 @@ where the components are:</br>
 - "kHz": the units of the transmitted acoustic frequency. Combining the frequency value and units into one string is a convenient way to express the transmitted acoustic frequency.
 - "009072034d45": The serial number of the transceiver, in this case a GPT.
 - "1-1": Combination of a channel number and configuration, as defined by Kongsberg. The channel number is defined by the order in which each transceiver was installed in the ER60 acquisition software. NEED TO CONFIRM & PROVIDE MORE DETAILS.
-- "ES18-11": The transducer model. This value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the ER60 acquisition software.
+- "ES18-11": The transducer model. This value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the ER60 acquisition software.  
 </br>
 #### Implementation:
 - Calibration values can not change within a file. The calibration values written for each channel are constant throughout the file and we do not need to read through the entire file to collate all the calibration values.  
@@ -36,7 +36,7 @@ WBT 978217-15 ES38-7_1</br>
 where the components are:</br>
 - "WBT": the transceiver identification. "WBT" is a Wide Band Transceiver (WBT). The EK80 acquisition software can also operate the EK60 General Purpose Transceiver (GPT).
 - "978217015": The serial number of the transceiver, in this case a WBT.
-- "ES38-7_1": A combination of the transducer model and configuration. The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). NEED TO CONFIRM & PROVIDE MORE DETAILS.
+- "ES38-7_1": A combination of the transducer model and configuration. The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). NEED TO CONFIRM & PROVIDE MORE DETAILS.  
 </br>
 #### Implementation:
 - Calibration values can not change within a file. The calibration values written for each channel are constant throughout the file and we do not need to read through the entire file to collate all the calibration values.  
