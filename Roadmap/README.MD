@@ -42,26 +42,25 @@ where the components are:
 - "978217015": The serial number of the transceiver, in this case a WBT.
 - "ES38-7_1": A combination of the transducer model and configuration. 
   - The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). 
-  - NEED TO CONFIRM & PROVIDE MORE DETAILS.
 
 
 ### Common Calibration File Format
-The common calibration file has the correct calibration values that are to be applied to a specific set of data as defined by the "survey ID - data file ID - channel ID" combination. 
-- *I've added survey ID as a top-level identifier. Among all the data files collected by NOAA the odds of the same file name are low, but not zero.*
-
-#### Calibration File Name Convention:
-- SurveyID_DataFileID_ChannelID
-  - SurveyID:
-    - Character string.
-    - Unique identifier for a survey/cruise/voyage.
-    - *Follow NCEI convention?*
-  - DataFileID:
-    - The data file name, **without any prefixes**: Dyyyymmdd-Thhmmss.raw
+#### Calibration File Naming Convention:
+- DateID_ChannelID_calibration
+  - DateID:
+    - The calibration date: Dyyyymmdd-Thhmmss
   - ChannelID:
     - The full channel ID that matches the channel ID in the data file.
+  - _calibration:
+    - A consistent identifier that this is a calibration file.
+Examples:
+- D20140911-T073841_GPT  18 kHz 009072034d45 1-1 ES18-11_calibration.yml
+- D20140911-T073841_WBT 978217-15 ES38-7_1_calibration.yml
 
 #### Parameter Values:
 The parameter values and nameing convention are detailed in the link to the JSON schema
+
+
 
 ### Implementation
 Overarching Rules:
@@ -72,16 +71,21 @@ Overarching Rules:
 - We can modify calibration values for time periods within a data file after the file has been imported to the processing software.
 - A channel ID is unique within a data file, but not necessarily among data files.
 - The same calibration values can be used for different channel IDs.
-- Channel ID will be used as the primary "key" to match calibration values to a channel and data file.
-  - <file>
-    - <channel ID> : <calibration file>
-    - "..."
+- Map calibration values to a channel and data file.
+  - <collection ID>
+    - <data file ID>
+      - <channel ID> : <SurveyID_DataFileID_ChannelID_calibration.yml>
+
+General Workflow:
+1. Select a set of data files to do something with.
+1. Generate a list of unique collection IDs, file IDs, and channel IDs from the selected files.
+
 
 - Stage 1
-  - The user selects a set of data files to:
-    1. Upload the files to NCEI, e.g., using Tugboat
-    1. Upload the files to the AA-SI storage bucket
-    1. Download the files to local storage
+  - Select a set of data files to:
+    - Upload the files to NCEI, e.g., using Tugboat
+    - Upload the files to the AA-SI storage bucket
+    - Download the files to local storage
+    - Process & Analyze
 
-- Stage 2
-  - The selected data files are read and a list of unique channels is generated.
+
