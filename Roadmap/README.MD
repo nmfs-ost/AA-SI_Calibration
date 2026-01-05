@@ -46,9 +46,22 @@ where the components are:
 
 
 ### Common Calibration File Format
-The common calibration file has the correct calibration values that are to be applied to a specific set of data as defined by the "survey ID - data file name - channel ID" combination. 
+The common calibration file has the correct calibration values that are to be applied to a specific set of data as defined by the "survey ID - data file ID - channel ID" combination. 
 - *I've added survey ID as a top-level identifier. Among all the data files collected by NOAA the odds of the same file name are low, but not zero.*
 
+#### Calibration File Name Convention:
+- SurveyID_DataFileID_ChannelID
+  - SurveyID:
+    - Character string.
+    - Unique identifier for a survey/cruise/voyage.
+    - *Follow NCEI convention?*
+  - DataFileID:
+    - The data file name, **without any prefixes**: Dyyyymmdd-Thhmmss.raw
+  - ChannelID:
+    - The full channel ID that matches the channel ID in the data file.
+
+#### Parameter Values:
+The parameter values and nameing convention are detailed in the link to the JSON schema
 
 ### Implementation
 Overarching Rules:
@@ -62,7 +75,7 @@ Overarching Rules:
 - Channel ID will be used as the primary "key" to match calibration values to a channel and data file.
   - <file>
     - <channel ID> : <calibration file>
-    - ...
+    - "..."
 
 - Stage 1
   - The user selects a set of data files to:
