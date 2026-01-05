@@ -18,9 +18,9 @@ where the components are:</br>
 - "kHz": the units of the transmitted acoustic frequency. Combining the frequency value and units into one string is a convenient way to express the transmitted acoustic frequency.
 - "009072034d45": The serial number of the transceiver, in this case a GPT.
 - "1-1": Combination of a channel number and configuration, as defined by Kongsberg. The channel number is defined by the order in which each transceiver was installed in the ER60 acquisition software. NEED TO CONFIRM & PROVIDE MORE DETAILS.
-- "ES18-11": The transducer model. This value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the ER60 acquisition software.  
-</br>
-#### Implementation:
+- "ES18-11": The transducer model. This value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the ER60 acquisition software.
+
+#### Implementation
 - Calibration values can not change within a file. The calibration values written for each channel are constant throughout the file and we do not need to read through the entire file to collate all the calibration values.  
 - Calibration values within a file are immutable. We do not overwrite the values within a file.
 - We can modify calibration values for time periods within a data file. We can modify calibration values for the channels after the file has been imported to the processing software.
