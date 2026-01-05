@@ -12,7 +12,7 @@ The EK500 stores calibration values in a file that is read by the EK500 echosoun
 Calibration values for EK60/ER60 data files are written to each data file. These values are not applied to the data (e.g., "power") in the file, but are applied by the processing software after the data have been read into the software. Not applying the calibration values to the data has benefits and limitations.  A benefit is that modifications to the calibration values can be made and applied in software in the event that the embedded values are incorrect. Limitations are that the data are not "calibrated" and can not be used directly by only reading the file, users not accustomed to Kongsberg data may not understand that they need to apply the calibration values to the data prior to analysis, and changes to the calibration values must be tracked throughout the lifecycle of the data file.
 
 #### Channels
-EK60/ER60 data files can contain data from multiple echosounders and transducers, and each echosounder can be configured in its own way. Kongsberg identifies each combination of transceiver-transducer pair and operational configuration as a "channel". The channel identification is a character string with space-delimited components that provide information about the configuration.   An example EK60/ER60 channel ID is:
+EK60/ER60 data files can contain data from multiple echosounders and transducers, and each echosounder can be configured in its own way. Kongsberg identifies each combination of transceiver-transducer pair and operational configuration as a "channel". The channel identification is a character string with space-delimited components that provide information about the configuration.   An example EK60/ER60 channel ID is:  
 **GPT  18 kHz 009072034d45 1-1 ES18-11**
 where the components are:
 - "GPT": the transceiver identification. "GPT" is a General Purpose Transceiver (GPT).
@@ -34,7 +34,7 @@ The "channel number - configuration ID" can change based on the installation ord
 Calibration values for EK80 data files are written to each data file. These values are not applied to the data (e.g., "power") in the file, but are applied by the processing software after the data have been read into the software. Not applying the calibration values to the data has benefits and limitations.  A benefit is that modifications to the calibration values can be made and applied in software in the event that the embedded values are incorrect. Limitations are that the data are not "calibrated" and can not be used directly by only reading the file, users not accustomed to Kongsberg data may not understand that they need to apply the calibration values to the data prior to analysis, and changes to the calibration values must be tracked throughout the lifecycle of the data file.
 
 #### Channels
-EK80 data files can contain data from multiple echosounders and transducers, and each echosounder can be configured in its own way. Kongsberg identifies each combination of transceiver-transducer pair and operational configuration as a "channel". The channel identification is a character string with space-delimited components that provide information about the configuration.   An example EK80 channel ID is:
+EK80 data files can contain data from multiple echosounders and transducers, and each echosounder can be configured in its own way. Kongsberg identifies each combination of transceiver-transducer pair and operational configuration as a "channel". The channel identification is a character string with space-delimited components that provide information about the configuration.   An example EK80 channel ID is:  
 **WBT 978217-15 ES38-7_1**
 where the components are:
 - "WBT": the transceiver identification. "WBT" is a Wide Band Transceiver (WBT). 
@@ -44,6 +44,12 @@ where the components are:
   - The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). 
   - NEED TO CONFIRM & PROVIDE MORE DETAILS.
 
+
+### Common Calibration File Format
+The common calibration file has the correct calibration values that are to be applied to a specific set of data as defined by the "survey ID - data file name - channel ID" combination. 
+- *I've added survey ID as a top-level identifier. Among all the data files collected by NOAA the odds of the same file name are low, but not zero.*
+
+
 ### Implementation
 Overarching Rules:
 - Calibration values do not change within a file. 
@@ -52,6 +58,11 @@ Overarching Rules:
   - We do not overwrite the values within a file.
 - We can modify calibration values for time periods within a data file after the file has been imported to the processing software.
 - A channel ID is unique within a data file, but not necessarily among data files.
+- The same calibration values can be used for different channel IDs.
+- Channel ID will be used as the primary "key" to match calibration values to a channel and data file.
+  - <file>
+    - <channel ID> : <calibration file>
+    - ...
 
 - Stage 1
   - The user selects a set of data files to:
