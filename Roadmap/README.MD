@@ -36,15 +36,15 @@ WBT 978217-15 ES38-7_1</br>
 where the components are:</br>
 - "WBT": the transceiver identification. "WBT" is a Wide Band Transceiver (WBT). The EK80 acquisition software can also operate the EK60 General Purpose Transceiver (GPT).
 - "978217015": The serial number of the transceiver, in this case a WBT.
-- "ES38-7_1": A combination of the transducer model and configuration. The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). NEED TO CONFIRM & PROVIDE MORE DETAILS.  
-</br>
+- "ES38-7_1": A combination of the transducer model and configuration. The transducer model value is obtained from the installation menu, i.e., a transceiver-transducer pair are defined in the installation section of the EK80 acquisition software, and also provides the transmit frequency in kHz (e.g., the "38" indicates 38 kHz). NEED TO CONFIRM & PROVIDE MORE DETAILS.
+
 #### Implementation:
 - Calibration values can not change within a file. The calibration values written for each channel are constant throughout the file and we do not need to read through the entire file to collate all the calibration values.  
 - Calibration values within a file are immutable. We do not overwrite the values within a file.
 - We can modify calibration values for time periods within a data file. We can modify calibration values for the channels after the file has been imported to the processing software.
 - A channel ID is unique within a data file, but not necessarily among data files.
 
-
+### Road Map
 - Stage 1
   - The user selects a set of data files to:
     1. Upload the files to NCEI, e.g., using Tugboat
