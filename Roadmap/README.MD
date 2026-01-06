@@ -88,6 +88,7 @@ Overarching Rules:
   - <collection ID>
     - <data file ID>
       - <channel ID> : <CollectionID_DataFileID_ChannelID_calibration.yml>
+- A calibration file can map to multiple data files.
 
 General Workflow:
 1. Select a set of data files to do something with.
