@@ -1,7 +1,7 @@
-# Validated Calibration Road Map
+# Validated Calibration Data Road Map
 **Goal: Apply validated calibration values to the appropriate data files.**
 
-For active acoustic data to be quantitatively used for fisheries and ecosystem management, the data must be calibrated to an absolute standard, i.e., the standard sphere method [DOIs to Foote and Demer reports]. A calibration consists of measurements, fitting data to models, and finally generating values (e.g., gains, beam widths, angle offsets, etc.) that are applied to the data. It is incumbent on the data provider to verify and validate the calibration values and provide a data provenence so that the user of the data has confidence that the data are calibrated to the standards necessary for fisheries and ecosystem management. This document provides a roadmap for the provenence of the validated calibration values.  
+For active acoustic data to be quantitatively used for fisheries and ecosystem management, the data must be calibrated to an absolute standard, i.e., the standard sphere method [Foote et al.](https://doi.org/10.17895/ices.pub.8265), [Demer et al.](https://doi.org/10.17895/ices.pub.5494). A calibration consists of measurements, fitting data to models, and finally generating values (e.g., gains, beam widths, angle offsets, etc.) that are applied to the data. It is incumbent on the data provider to verify and validate the calibration values and provide a data provenence so that the user of the data has confidence that the data are calibrated to the standards necessary for fisheries and ecosystem management. This document provides a roadmap for the provenence of the validated calibration values.  
 
 NOAA collects data with a variety of active acoustic instrumentation and manufacturers and each have their own methods for storing and tracking calibration values. We start with the most commonly used systems and, hopefully, our methods are generic enough to accommodate other systems. There are many ways to store and track data. In our case, we start with a file that contains the calibration values, and this calibration file is matched to the appropriate data files. The calibration file is generated and validated once and becomes a static reference with permanent maps to the appropriate data files. Future developments will involve dynamic calibration references, e.g., using relational databases.  
 
@@ -54,9 +54,13 @@ where the components are:
 The validated calibration values are stored in a file, which provides a static reference to the validated values with permanent maps to the appropriate data files.  
 We have selected the open data format, [yaml](https://yaml.org/) as our format.
 
+
 #### Calibration File Naming Convention:
 Because the file is a static reference, we need to have a naming convention that will be permanent, easily intepreted by humans and machine, and efficiently mapped to the data files. Kongsberg parses data files into channels (see "Channels" sections above), so we generate one file per channel. 
-- DateID_ChannelID_calibration
+- CollectionID_DateID_ChannelID_calibration
+  - CollectionID:
+    - Identifier for the data collection, e.g., cruise/survey/voyage.
+    - The most common identifier will be a ship code, year, and survey number; e.g., HB2502 which is the 2nd survey on the Henry Bigelow in 2025. But it can be anything that is consistent among the data repositories (e.g., NCEI, local networks, Fisheries GCP).
   - DateID:
     - The calibration date: Dyyyymmdd-Thhmmss
   - ChannelID:
@@ -64,8 +68,8 @@ Because the file is a static reference, we need to have a naming convention that
   - _calibration:
     - A consistent identifier that this is a calibration file.
 Examples:
-- D20140911-T073841_GPT  18 kHz 009072034d45 1-1 ES18-11_calibration.yml
-- D20140911-T073841_WBT 978217-15 ES38-7_1_calibration.yml
+- DY1408_D20140911-T073841_GPT  18 kHz 009072034d45 1-1 ES18-11_calibration.yml
+- DY1408_D20140911-T073841_WBT 978217-15 ES38-7_1_calibration.yml
 
 #### Parameter Values:
 The parameter values and nameing convention are detailed in the link to the JSON schema
@@ -83,7 +87,7 @@ Overarching Rules:
 - Map calibration values to a channel and data file.
   - <collection ID>
     - <data file ID>
-      - <channel ID> : <SurveyID_DataFileID_ChannelID_calibration.yml>
+      - <channel ID> : <CollectionID_DataFileID_ChannelID_calibration.yml>
 
 General Workflow:
 1. Select a set of data files to do something with.
