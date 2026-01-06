@@ -3,7 +3,7 @@
 
 For active acoustic data to be quantitatively used for fisheries and ecosystem management, the data must be calibrated to an absolute standard, i.e., the standard sphere method [Foote et al.](https://doi.org/10.17895/ices.pub.8265), [Demer et al.](https://doi.org/10.17895/ices.pub.5494). A calibration consists of measurements, fitting data to models, and finally generating values (e.g., gains, beam widths, angle offsets, etc.) that are applied to the data. It is incumbent on the data provider to verify and validate the calibration values and provide a data provenence so that the user of the data has confidence that the data are calibrated to the standards necessary for fisheries and ecosystem management. This document provides a roadmap for the provenence of the validated calibration values.  
 
-NOAA collects data with a variety of active acoustic instrumentation and manufacturers and each have their own methods for storing and tracking calibration values. We start with the most commonly used systems and, hopefully, our methods are generic enough to accommodate other systems. There are many ways to store and track data. In our case, we start with a file that contains the calibration values, and this calibration file is matched to the appropriate data files. The calibration file is generated and validated once and becomes a static reference with permanent maps to the appropriate data files. Future developments will involve dynamic calibration references, e.g., using relational databases.  
+NOAA collects data with a variety of active acoustic instrumentation and manufacturers and each have their own methods for storing and tracking calibration values. We start with the most commonly used systems and, hopefully, our methods are generic enough to accommodate other systems. There are many ways to store and track data. In our case, we start with a file that contains the calibration values, and this calibration file is matched to the appropriate data files. The calibration file is generated and validated once and becomes a static resource with permanent maps to the appropriate data files. Future developments will involve dynamic calibration references, e.g., using relational databases.  
 
 This document is structured by instrument and manufacturer. Kongsberg/Simrad echosounders are the dominant systems used by NOAA Fisheries for more than 50 years and we start with them.
 
@@ -51,12 +51,12 @@ where the components are:
 
 
 ### Common Calibration File Format
-The validated calibration values are stored in a file, which provides a static reference to the validated values with permanent maps to the appropriate data files.  
+The validated calibration values are stored in a file, which provides a static resource to the validated values with permanent maps to the appropriate data files.  
 We have selected the open data format, [yaml](https://yaml.org/) as our format.
 
 
 #### Calibration File Naming Convention:
-Because the file is a static reference, we need to have a naming convention that will be permanent, easily intepreted by humans and machine, and efficiently mapped to the data files. Kongsberg parses data files into channels (see "Channels" sections above), so we generate one file per channel. 
+Because the file is a static resource, we need to have a naming convention that will be permanent, easily intepreted by humans and machine, and efficiently mapped to the data files. Kongsberg parses data files into channels (see "Channels" sections above), so we generate one file per channel. 
 - CollectionID_DateID_ChannelID_calibration
   - CollectionID:
     - Identifier for the data collection, e.g., cruise/survey/voyage.
